@@ -12,17 +12,25 @@
 ;(function($){
 
 	/*task queue, iteratively go through layers of layout process*/
-	var _taskQue = [];
+	var _taskQue = [],
+		_opts;
 
 	$.fn.ezLayout = function(options){
-		var opts = $.extend({}, $.fn.ezLayout.defaults, options);
+		//check whether option is an array, if yes pass, else extend
+		($.isArray(options)) ? opts = options : opts = $.extend({}, $.fn.ezLayout.defaults, options);
 
 		return this.each(function(index, el){
 			setLayout(el, opts);
 		});
 
 		function setLayout(el, options){
-			console.log(el, options);
+			/////////now write pseudo-code
+			/**
+			 * 
+			 */
+
+			//no need to return the element, $(selector).each() returns this.
+			//return el;
 		}
 		
 	};
@@ -31,10 +39,10 @@
 		/*defines the final layout, ['...', '...'], []*/
 		layout: [
 			'1:#left',
-			['2:#right', ['1:#right-top','3:#right-bottom']]
+			['2:#right', ['1:.right-top','3:.right-bottom']]
 		],
 		/*defines the direction of the layout; 'h', 'v' or ['h', 'v', ...]*/
-		direction: 'h',
+		direction: 'v',
 		/*defines the height of the parent block; '...string...'*/
 		height: '100%',
 		/*defines the width of the parent block '...string...'*/
