@@ -1,7 +1,7 @@
 {
-  "name": "beaver-layout",
+  "name": "flexLayout",
   "version": "0.1.0",
-  "homepage": "https://github.com/mr-beaver/beaver-layout",
+  "homepage": "TBI",
   "authors": [
     "mr-beaver <beavercoding@gmail.com>"
   ],
@@ -11,12 +11,15 @@
     "jquery",
     "layout",
     "flexbox",
+    "flex-box",
     "split",
     "responsive",
-    "easy to use",
+    "easy-to-use",
     "resize",
-    "highly customizable",
-    "resizable"
+    "highly-customizable",
+    "resizable",
+    "light-weight",
+    "tiny"
   ],
   "license": "MIT",
   "ignore": [

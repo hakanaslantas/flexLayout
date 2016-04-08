@@ -1,0 +1,39 @@
+{
+  "name": "flexLayout",
+  "version": "0.1.0",
+  "title": "flexLayout",
+  "author": {
+    "name": "mr-beaver",
+    "email": "beavercoding@gmail.com",
+    "homepage": "http://TBD"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://en.wikipedia.org/wiki/MIT_License"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=2.2"
+  },
+  "description": "Easy to use, highly customizable, responsive jQuery split/layout plugin.",
+  "keywords": [
+    "jquery",
+    "layout",
+    "flexbox",
+    "flex-box",
+    "split",
+    "responsive",
+    "easy-to-use",
+    "resize",
+    "highly-customizable",
+    "resizable",
+    "light-weight",
+    "tiny"
+  ],
+  "homepage": "http://TBD",
+  "docs": "https://TBD",
+  "demo": "http://TBD",
+  "download": "http://TBD",
+  "bugs": "https://github.com/mr-beaver/flexLayout/issues"
+}
