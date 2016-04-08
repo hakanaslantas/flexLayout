@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<script src="bower_components/jquery/dist/jquery.js"></script>
-		<script src="ezLayout.js"></script>
+		<script src="flexLayout.js"></script>
 		<link rel="stylesheet" href="test.css">
 	</head>
 	<body>
@@ -10,7 +10,7 @@
 	</body>
 	<script>
 		$(document).ready(function(){
-			$('.test-div').ezLayout({
+			$('.test-div').flexLayout({
 				layout: ['1:.test-2 #test-1 .test-3', ['1', ['2:.test123', '3:#idadads', ['5', ['2:.test123', '3:.idadads']]]]],
 				dir: ['v', 'v', 'h'],
 				adjust: [true, false, true],

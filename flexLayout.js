@@ -11,14 +11,14 @@
 
 ;(function($){
 
-	$.fn.ezLayout = function(opts){
+	$.fn.flexLayout = function(opts){
 		var _options = {}; /*store options*/
 		//consult options
 		if($.isArray(opts)){
 			_options.layout = opts;
-			_options = $.extend({}, $.fn.ezLayout.defaults, _options);
+			_options = $.extend({}, $.fn.flexLayout.defaults, _options);
 		}else{
-			_options = $.extend({}, $.fn.ezLayout.defaults, opts);
+			_options = $.extend({}, $.fn.flexLayout.defaults, opts);
 		}
 		//setup layout iteratively
 		return this.each(function(index, el){
@@ -47,7 +47,7 @@
 	/**
 	 * Default config for the plugin
 	 */
-	$.fn.ezLayout.defaults = {
+	$.fn.flexLayout.defaults = {
 		/*defines the final layout, ['...', '...'], []*/
 		layout: [
 			'100px:id="left" class="left-1 left-2"',
@@ -69,7 +69,7 @@
 	/**
 	 * Default flexbox config used inside the plugin. if you do not like the default config, you can change it here.
 	 */
-	$.fn.ezLayout.flexConfig = {
+	$.fn.flexLayout.flexConfig = {
 		'justify-content': 'flex-start'
 	};
 
@@ -80,7 +80,7 @@
 		//check direction configure to setup flex-flow
 		var _flow = (($.isArray(opts.dir) ? opts.dir[0] : opts.dir) === 'v') ? 'row' : 'column';
 		//setup flex parameters
-		$el.css({display: 'flex', 'flex-flow': _flow,  'justify-content': $.fn.ezLayout.flexConfig['justify-content']});
+		$el.css({display: 'flex', 'flex-flow': _flow,  'justify-content': $.fn.flexLayout.flexConfig['justify-content']});
 		//go through layout array
 		$.each(opts.layout, function(index, config){
 				//get size
@@ -119,8 +119,8 @@
 					options: {
 						layout: config[1],
 						dir: (function(){if($.isArray(_dir)) {_dir.shift(); return _dir[0];} else{ return (_dir === 'v') ? 'h' : 'v'; }})(),
-						adjust: (function(){if($.isArray(_adjust)) _adjust.shift(); return (_adjust.length) /*in case length is less than levels*/ ?_adjust : $.fn.ezLayout.defaults.adjust; })(),
-						bars: (function(){if($.isArray(_bars)) _bars.shift(); return (_bars.length) /*in case length is less than levels*/? _bars : $.fn.ezLayout.defaults.bars;})()
+						adjust: (function(){if($.isArray(_adjust)) _adjust.shift(); return (_adjust.length) /*in case length is less than levels*/ ?_adjust : $.fn.flexLayout.defaults.adjust; })(),
+						bars: (function(){if($.isArray(_bars)) _bars.shift(); return (_bars.length) /*in case length is less than levels*/? _bars : $.fn.flexLayout.defaults.bars;})()
 					}
 				});
 			}
@@ -145,7 +145,7 @@
 		}else if($.type(bstyle) === 'string'){//string of class names
 			return 'class="' + bstyle + '"';
 		}else{//wrong input
-			throw new Error('jQuery plugin::ezLayout::error on barstyle settings');
+			throw new Error('jQuery plugin::flexLayout::error on barstyle settings');
 		}
 
 	}
