@@ -51,8 +51,8 @@
 		/*defines the final layout, ['...', '...'], []*/
 		layout: [
 			'100px:id="left" class="left-1 left-2"',
-			'2:id="center"',
-			['1:id="right"', ['1:class="right-top"','3:id="right-bottom" class="bg-primary"']]
+			'3:#center',
+			['2:id="right"', ['1:.right-top','3:.right-bottom .bg-primary']]
 		],
 		/*defines the height of the parent block; '...string...'*/
 		height: '100%',
