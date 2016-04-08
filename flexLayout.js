@@ -104,13 +104,6 @@
 					_$bar = $('<div ' + _barstyle + '></div>');
 				//append bar
 				_$bar.appendTo($el);
-				//if adjustable
-				if($.isArray(_adjust) ? _adjust[0] : _adjust){
-					//check direction, insert cursor style accordingly
-					_$bar.css({
-						cursor: (function(){ return ($.isArray(_dir) ? _dir[0] : _dir) === 'v' ? 'ew-resize' : 'ns-resize'; })()
-					});
-				}
 			}
 			//multi-layer layout, push next layer into task que
 			if($.isArray(config)){
