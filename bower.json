@@ -1,12 +1,12 @@
 {
   "name": "flexLayout",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "TBI",
   "authors": [
     "mr-beaver <beavercoding@gmail.com>"
   ],
   "description": "Easy to use, highly customizable, responsive jQuery split/layout plugin.",
-  "main": "./layout.js",
+  "main": "./flexLayout.js",
   "keywords": [
     "jquery",
     "layout",
