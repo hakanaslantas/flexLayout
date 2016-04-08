@@ -1,12 +1,10 @@
 /**
- * [description]
- * @param  {[type]} $ [description]
- * @return {[type]}   [description]
- *
- *
- * expose functions/objects: defaults, flex default configs
- *
- * unexpose functions/objects: setLayout
+ * flexLayout v0.1.0, http://TBD
+ * ===================================
+ * Highly customizable responsive layout/split jQuery plug-in
+ * 
+ * (c) 2016 Mr. Beaver, http://TBD
+ * MIT Licensed
  */
 
 ;(function($){
@@ -26,9 +24,9 @@
 				$el = $(el);
 			/**
 			 * Only setup height/width for the first layer, since the following layers will self-expand with style flex.
-			 * Therefore, need to check whether el already has flex style properties(e.g. setup by previous chain calling), if yes do not setup height/wdith.
+			 * Therefore, need to check whether el already has flex style properties(e.g. setup by previous chain calling), if yes do not setup height/width.
 			 * 
-			 * !Caveat: do not check $el.css('flex-XXX'), it returns wrong values. Use DOM node instead.
+			 * !Caveat: do not check $el.css('flex-XXX'), it might return wrong values. Use DOM node instead.
 			 */
 			if(!el.style['flex-grow'] && !el.style['flex-shrink'] && !el.style['flex-basis'])
 				$el.css({height: _options.height, width: _options.width});
@@ -45,14 +43,14 @@
 	};
 
 	/**
-	 * Default config for the plugin
+	 * Default configuration for the plug-in
 	 */
 	$.fn.flexLayout.defaults = {
 		/*defines the final layout, ['...', '...'], []*/
 		layout: [
 			'100px:id="left" class="left-1 left-2"',
 			'3:#center',
-			['2:id="right"', ['1:.right-top','3:.right-bottom .bg-primary']]
+			['2:id="right"', ['1:.right-top','3:.right-bottom .bottom']]
 		],
 		/*defines the height of the parent block; '...string...'*/
 		height: '100%',
@@ -60,14 +58,15 @@
 		width: '100%',
 		/*defines the direction of the layout; 'h', 'v' or ['h', 'v', 'v', ...]*/
 		dir: 'v',
-		/*defines wether the width/height of created blocks can be adjusted or not, boolean or [boolean, boolean]*/
+		/*defines whether the width/height of created blocks can be adjusted or not, boolean or [boolean, boolean]*/
 		adjust: false,
 		/*defines the style of divide bars between created blocks, {...css object}, '...string of class name...', boolean or [..., ..., ..., ...]*/
 		bars: true
 	};
 
 	/**
-	 * Default flexbox config used inside the plugin. if you do not like the default config, you can change it here.
+	 * Default flex-box 'justify-content' configuration used inside the plug-in. 
+	 * If you do not like the default configuration, you can change it here.
 	 */
 	$.fn.flexLayout.flexConfig = {
 		'justify-content': 'flex-start'
@@ -91,7 +90,7 @@
 				_attribute = $.isArray(config) ? trimAttr(config[0].split(':')[1]) : trimAttr(config.split(':')[1]),
 				//make block object
 				_$block = $('<div ' + _style + _attribute + '></div>'),
-				//save a copy of arraies, it might be multiple certain level of blocks; therefore do not 'shift' on original array
+				//save a copy of arrays, it might be multiple same level of blocks; therefore do not 'shift' on original array
 				_adjust = opts.adjust,
 				_bars = opts.bars,
 				_dir = opts.dir;
@@ -100,10 +99,17 @@
 			//insert bars if necessary
 			if(($.isArray(_bars) ? _bars[0] : _bars) && index < opts.layout.length - 1){
 				var _barstyle = trimBarStyle($el, ($.isArray(_bars) ? _bars[0] : _bars)), //trim/fetch barstyle for later use, {}
-					//bar object for later use, if necessar
+					//bar object for later use, if necessary
 					_$bar = $('<div ' + _barstyle + '></div>');
 				//append bar
 				_$bar.appendTo($el);
+				//check whether adjustable is true or not
+				if($.isArray(_adjust) ? _adjust[0] : _adjust){
+					//add cursor style according to dir
+					_$bar.css({cursor: (function(){return (($.isArray(_dir) ? _dir[0] : _dir) === 'v') ? 'ew-resize' : 'ns-resize';})()});
+					//register events on bars
+					registerResize(_$bar, $.isArray(_dir) ? _dir[0] : _dir);
+				}
 			}
 			//multi-layer layout, push next layer into task que
 			if($.isArray(config)){
@@ -124,7 +130,7 @@
 
 	/**
 	 * Get barstyle given by user.
-	 * Or fill the barstyle if user want adjust but did not provide bar style
+	 * Or fill the barstyle if user want to have bars but did not provide bar style
 	 */
 	function trimBarStyle($el, bstyle){
 		if($.type(bstyle) === 'boolean'){//no barstyle
@@ -159,7 +165,7 @@
 		if(/(#|\.)/.test(attrStr) && !/(href)/.test(attrStr)){
 			//remove spaces
 			attrStr = attrStr.replace(/\s/g, '');
-			//id extis
+			//id exists
 			if(/#.*?(?=\.|$)/i.test(attrStr)){
 				_attr += attrStr.match(/#.*?(?=\.|$)/i)[0].replace('#', 'id="') + '"';
 				//remove # part in the original string for later use
@@ -182,5 +188,46 @@
 			return attrStr;
 		}
 	}
-	
+
+	/**
+	 * register resize event on bars, if necessary
+	 */
+	function registerResize($bar, dir){
+		$bar.on('mousedown', function(e){
+			/**
+			 * Note: browsers register all the listening event at the second phase of JS loading.
+			 * 		 That is, all the DOM elements are inserted even those ones inserted by the JS.
+			 * 		 Therefore one might think the next block 'has not been inserted' through the code;
+			 * 		 however by the time browsers register this event the next block is already there.
+			 */
+			e.preventDefault();
+			var $this = $(this),
+				$prev = $this.prev(),
+				$next = $this.next(),
+				$parent = $this.parent(),
+				prevStart = (dir === 'v') ? $prev.offset().left - $parent.offset().left : $prev.offset().top - $parent.offset().top,
+				nextEnd = (dir === 'v') ? ($next.offset().left + $next.width()) - $parent.offset().left : ($next.offset().top + $next.height()) - $parent.offset().top,
+				total = nextEnd - prevStart,//total height/width of two blocks
+				totalFlexGrow = Number.parseFloat($prev.css('flex-grow')) + Number.parseFloat($next.css('flex-grow'));
+				//mousemove event registered on $this.parent()
+				$parent.on('mousemove', function(e){
+					e.preventDefault();
+					//get current position
+					var relX = e.pageX - $parent.offset().left,
+						relY = e.pageY - $parent.offset().top,
+						prevPercent = (dir === 'v') ? (relX - prevStart) / total : (relY - prevStart) / total,
+						nextPercent = 1 - prevPercent,
+						min = 10;
+					if(prevPercent * 100 < min || nextPercent * 100 < min)
+						return;
+					$prev.css({'flex-grow': prevPercent * totalFlexGrow});
+					$next.css({'flex-grow': nextPercent * totalFlexGrow});
+					//unbind mousemove if 
+					$(window).on('mouseup', function(){
+						$parent.unbind('mousemove');
+					});
+				});
+		});
+	}
+
 }(window.jQuery));
