@@ -5,12 +5,18 @@
   "authors": [
     "mr-beaver <beavercoding@gmail.com>"
   ],
-  "description": "Easy to use and highly customizable layout plugin for jQuery",
+  "description": "Easy to use, highly customizable, responsive jQuery split/layout plugin.",
   "main": "./layout.js",
   "keywords": [
     "jquery",
     "layout",
-    "flexbox"
+    "flexbox",
+    "split",
+    "responsive",
+    "easy to use",
+    "resize",
+    "highly customizable",
+    "resizable"
   ],
   "license": "MIT",
   "ignore": [

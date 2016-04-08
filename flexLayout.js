@@ -3,7 +3,7 @@
  * ===================================
  * Highly customizable responsive layout/split jQuery plug-in
  * 
- * (c) 2016 Mr. Beaver, http://TBD
+ * (c) 2016 mr-beaver, http://TBD
  * MIT Licensed
  */
 

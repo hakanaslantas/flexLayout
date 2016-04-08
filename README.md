@@ -1,7 +1,7 @@
-# flex-layout
-####Easy to use and highly customizable layout plugin for jQuery.
+# flexLayout
+####Easy to use, highly customizable, responsive jQuery split/layout plugin.
 
-Refer to the [flex-layout website]() for examples.
+Refer to the [flexLayout website]() for examples.
 
 Features
 --------
