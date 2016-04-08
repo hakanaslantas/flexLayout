@@ -5,12 +5,22 @@
 		<link rel="stylesheet" href="test.css">
 	</head>
 	<body>
-		<div class="test-div" style="height:100%; width:100%; background-color: lightgrey;"></div>
+		<div class="test-div" style="background-color: lightgrey;"></div>
 		<!-- <div class="test-div">2</div> -->
 	</body>
 	<script>
 		$(document).ready(function(){
-			$('.test-div').ezLayout();
+			$('.test-div').ezLayout({
+				layout: ['1:.test-2 #test-1 .test-3', ['1', ['2:.test123', '3:#idadads', ['5', ['2:.test123', '3:.idadads']]]]],
+				dir: ['v', 'v', 'h'],
+				adjust: [true, false, true],
+				bars: [{flex: '0 0 5px', 'background-color': 'blue'}, true, 'split-v-bar']
+			});
+			/*$('.test').ezLayout({
+				layout: ['1:class="test12"', '1:class="test12"'],
+				dir: 'v',
+				adjust: true,
+			});*/
 		});
 	</script>
 </html>
