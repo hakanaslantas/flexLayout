@@ -218,8 +218,11 @@
 						prevPercent = (dir === 'v') ? (relX - prevStart) / total : (relY - prevStart) / total,
 						nextPercent = 1 - prevPercent,
 						min = 10;
-					if(prevPercent * 100 < min || nextPercent * 100 < min)
+					if(prevPercent * 100 < min || nextPercent * 100 < min){
+						$parent.unbind('mousemove');
 						return;
+					}
+						
 					$prev.css({'flex-grow': prevPercent * totalFlexGrow});
 					$next.css({'flex-grow': nextPercent * totalFlexGrow});
 					//unbind mousemove if 
