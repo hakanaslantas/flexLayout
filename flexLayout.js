@@ -1,5 +1,5 @@
 /**
- * flexLayout v0.1.0, http://TBD
+ * flexLayout v0.2.0, http://TBD
  * ===================================
  * Highly customizable responsive layout/split jQuery plug-in
  * 
@@ -7,31 +7,27 @@
  * MIT Licensed
  */
 
-
-//--------------------------------
-//1). separate layout array and opts, that is now flexLayout takes two parameters, first is an array, that specifies the layout and the second one is options
-//2). let $.fn.flexLayout = $.fn.flexlayout, in case that users tend to use lower case (done)
-//3). give a callback function such that this element of call function is bind to every styled block
-
 ;(function($){
 
-	$.fn.flexLayout = function(layout, opts){
+	$.fn.flexLayout = function(layout, opts, _cb/*TBI*/){
 		//----------needs to be modified, layout has not been honored-------------------------//
-		var _options = {}; /*store options*/
-		//consult options
-		if($.isArray(opts)){
-			_options.layout = opts;
-			_options = $.extend({}, $.fn.flexLayout.defaults, _options);
+		var _options = {}, /*store options*/
+			_layoutArr = []; /*store array*/
+		//check whether layout is given
+		if($.isPlainObject(layout)){
+			opts = layout;
+			_layoutArr = $.fn.flexLayout.defaults.layout;
 		}else{
-			_options = $.extend({}, $.fn.flexLayout.defaults, opts);
+			_layoutArr = layout || $.fn.flexLayout.defaults.layout;
 		}
+		_options = $.extend({}, $.fn.flexLayout.defaults.options, opts);
 		//setup layout iteratively
 		return this.each(function(index, el){
 			var _taskQue = [],  //task queue
 				$el = $(el);
 			/**
-			 * Only setup height/width for the first layer, since the following layers will self-expand with style flex.
-			 * Therefore, need to check whether el already has flex style properties(e.g. setup by previous chain calling), if yes do not setup height/width.
+			 * Only setup height/width for the first level, since the following levels will self-expand with style flex.
+			 * Therefore, need to check whether el already has flex style properties(e.g. setup by previous calling), if yes do not setup height/width.
 			 * 
 			 * !Caveat: do not check $el.css('flex-XXX'), it might return wrong values. Use DOM node instead.
 			 */
@@ -40,11 +36,12 @@
 			//push the first task into queue
 			_taskQue.push({
 				$element: $el,
+				layout: _layoutArr,
 				options: _options
 			});
 			//traverse task queue
 			while(_taskQue.length){
-				setLayout(_taskQue[0].$element, _taskQue[0].options, _taskQue);
+				setLayout(_taskQue[0].$element, _taskQue[0].layout, _taskQue[0].options, _taskQue);
 			}
 		});
 	};
@@ -89,13 +86,13 @@
 	/**
 	 * main layout setup function
 	 */
-	function setLayout($el, opts, _tq){
+	function setLayout($el, layout, opts, _tq){
 		//check direction configure to setup flex-flow
 		var _flow = (($.isArray(opts.dir) ? opts.dir[0] : opts.dir) === 'v') ? 'row' : 'column';
 		//setup flex parameters
 		$el.css({display: 'flex', 'flex-flow': _flow,  'justify-content': $.fn.flexLayout.flexConfig['justify-content']});
 		//go through layout array
-		$.each(opts.layout, function(index, config){
+		$.each(layout, function(index, config){
 				//get size
 			var _dimension = $.isArray(config) ? config[0].split(':')[0] : config.split(':')[0],
 				//check whether fixed or flexible
@@ -111,7 +108,7 @@
 			//append block
 			_$block.appendTo($el);
 			//insert bars if necessary
-			if(($.isArray(_bars) ? _bars[0] : _bars) && index < opts.layout.length - 1){
+			if(($.isArray(_bars) ? _bars[0] : _bars) && index < layout.length - 1){
 				var _barstyle = trimBarStyle($el, ($.isArray(_bars) ? _bars[0] : _bars)), //trim/fetch barstyle for later use, {}
 					//bar object for later use, if necessary
 					_$bar = $('<div ' + _barstyle + '></div>');
@@ -129,11 +126,22 @@
 			if($.isArray(config)){
 				_tq.push({
 					$element: _$block,
+					layout: config[1],
 					options: {
-						layout: config[1],
-						dir: (function(){if($.isArray(_dir)) {_dir.shift(); return _dir[0];} else{ return (_dir === 'v') ? 'h' : 'v'; }})(),
-						adjust: (function(){if($.isArray(_adjust)) _adjust.shift(); return (_adjust.length) /*in case length is less than levels*/ ?_adjust : $.fn.flexLayout.defaults.adjust; })(),
-						bars: (function(){if($.isArray(_bars)) _bars.shift(); return (_bars.length) /*in case length is less than levels*/? _bars : $.fn.flexLayout.defaults.bars;})()
+						dir: 	(function(){//if array return shifted, if not switch direction
+									if($.isArray(_dir)) {_dir.shift(); return _dir[0];}
+									else{ return (_dir === 'v') ? 'h' : 'v'; }
+								})(),
+						adjust: (function(){//if array return shifted
+									if($.isArray(_adjust)) _adjust.shift(); 
+									if(!_adjust.length) _adjust = $.fn.flexLayout.defaults.options.adjust;//in case the given array is shorter
+									return _adjust;
+								})(),
+						bars: 	(function(){
+									if($.isArray(_bars)) _bars.shift();
+									if(!_bars.length) _bars = $.fn.flexLayout.defaults.options.bars;//in case the given array is shorter
+									return _bars;
+								})()
 					}
 				});
 			}
