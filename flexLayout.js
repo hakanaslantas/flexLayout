@@ -7,9 +7,16 @@
  * MIT Licensed
  */
 
+
+//--------------------------------
+//1). separate layout array and opts, that is now flexLayout takes two parameters, first is an array, that specifies the layout and the second one is options
+//2). let $.fn.flexLayout = $.fn.flexlayout, in case that users tend to use lower case (done)
+//3). give a callback function such that this element of call function is bind to every styled block
+
 ;(function($){
 
-	$.fn.flexLayout = function(opts){
+	$.fn.flexLayout = function(layout, opts){
+		//----------needs to be modified, layout has not been honored-------------------------//
 		var _options = {}; /*store options*/
 		//consult options
 		if($.isArray(opts)){
@@ -46,22 +53,23 @@
 	 * Default configuration for the plug-in
 	 */
 	$.fn.flexLayout.defaults = {
-		/*defines the final layout, ['...', '...'], []*/
+		/*defines the final layout, ['...', '...']*/
 		layout: [
-			'100px:id="left" class="left-1 left-2"',
-			'3:#center',
-			['2:id="right"', ['1:.right-top','3:.right-bottom .bottom']]
+			'80px:class="top banner"',
+			['1:id="content"', ['1:.content-left','10:.content-right']]
 		],
-		/*defines the height of the parent block; '...string...'*/
-		height: '100%',
-		/*defines the width of the parent block '...string...'*/
-		width: '100%',
-		/*defines the direction of the layout; 'h', 'v' or ['h', 'v', 'v', ...]*/
-		dir: 'v',
-		/*defines whether the width/height of created blocks can be adjusted or not, boolean or [boolean, boolean]*/
-		adjust: false,
-		/*defines the style of divide bars between created blocks, {...css object}, '...string of class name...', boolean or [..., ..., ..., ...]*/
-		bars: true
+		options: {
+			/*defines the height of the parent block; '...string...'*/
+			height: '100%',
+			/*defines the width of the parent block '...string...'*/
+			width: '100%',
+			/*defines the direction of the layout; 'h', 'v' or ['h', 'v', 'v', ...]*/
+			dir: 'h',
+			/*defines whether the width/height of created blocks can be adjusted or not, boolean or [boolean, boolean]*/
+			adjust: false,
+			/*defines the style of divide bars between created blocks, {...css object}, '...string of class name...', boolean or [..., ..., ..., ...]*/
+			bars: true
+		}
 	};
 
 	/**
@@ -71,6 +79,12 @@
 	$.fn.flexLayout.flexConfig = {
 		'justify-content': 'flex-start'
 	};
+
+
+	/**
+	 * Make $.fn.flexlayout = $.fn.flexLayout, for convenience
+	 */
+	$.fn.flexlayout = $.fn.flexLayout;
 
 	/**
 	 * main layout setup function
