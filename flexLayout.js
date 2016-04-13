@@ -5,6 +5,7 @@
  * 
  * (c) 2016 mr-beaver, http://TBD
  * MIT Licensed
+ * 
  */
 
 ;(function($){

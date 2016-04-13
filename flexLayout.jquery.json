@@ -16,7 +16,7 @@
   "dependencies": {
     "jquery": ">=2.2"
   },
-  "description": "Easy to use, highly customizable, responsive jQuery split/layout plugin.",
+  "description": "Easy to use, highly customizable, light weight, jQuery split/layout plugin.",
   "keywords": [
     "jquery",
     "layout",
