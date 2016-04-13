@@ -142,8 +142,8 @@ or
 </div>
 <script>
     $('#some-element').flexlayout(['1:#some-left', '5:#some-right'], {
-        height: 600px,
-        width: 400px
+        height: '600px',
+        width: '400px'
     });
 </script>
 
