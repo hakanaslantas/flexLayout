@@ -5,7 +5,6 @@
  * 
  * (c) 2016 mr-beaver, http://TBD
  * MIT Licensed
- * 
  */
 
 ;(function($){
@@ -21,9 +20,9 @@
 			_layoutArr = layout || $.fn.flexLayout.defaults.layout;
 		}
 		_options = $.extend({}, $.fn.flexLayout.defaults.options, opts);
-		//setup layout iteratively
+		//setup layout
 		return this.each(function(index, el){
-			var _taskQue = [],  //task queue
+			var _taskQue = [],  //task queue, setup layout iteratively
 				$el = $(el);
 			/**
 			 * Only setup height/width for the first level, since the following levels will self-expand with style flex.
