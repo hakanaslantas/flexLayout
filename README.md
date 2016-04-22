@@ -192,5 +192,3 @@ $('some-element').flexlayout(vv, {dir: ['v', 'v']});
     * If given **true**, then there will bars insert between generated blocks. The style of bars honors the 'bars' configuration. Drag bars can adjust height/width of the blocks.
     * If given array, then every *nth* level will honor the 'adjust' configuration given by the *nth* element in the array.
     * **Note: if 'adjust' is true, and 'bars' is false. The 'bars' configuration will be overwritten by default value.**
-
-*TBD: check bugs in adjust and bars; website; good examples.*

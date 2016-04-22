@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.css">
+		<!-- main less file for demo -->
+		<link rel="stylesheet/less" href="css/main.less">
+	</head>
+	<body>
+		<div id="app">
+			<div class="panel panel-default">
+				<strong><i>Titles</i></strong>
+			</div>
+			<div class="panel panel-default">
+				<i>Features</i>
+			</div>
+			<div class="panel panel-default">
+				
+			</div>
+			<!-- Demos -->
+			<ul class="nav nav-tabs">
+			  <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
+			  <li><a href="#advance" data-toggle="tab">Advanced</a></li>
+			  <li><a href="#more" data-toggle="tab">More on Flex-box</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="basic">Basics</div>
+				<div class="tab-pane" id="advance">Advances</div>
+				<div class="tab-pane" id="more">More on Flex</div>
+			</div>
+
+			<div id="test"></div>
+		</div>
+	
+		<script src="libs/jquery.min.js"></script>
+		<script src="libs/underscore.min.js"></script>
+		<script src="libs/bootstrap.min.js"></script>
+		<script src="libs/backbone.min.js"></script>
+		<!-- flexlayout -->
+		<script src="../flexLayout.js"></script>
+		<!-- main js file for demo -->
+		<script src="js/main.js"></script>
+		<!-- less.js -->
+		<script>
+			window.less = {
+				logLevel : 1
+			};
+		</script>
+		<script src="libs/less.min.js"></script>
+	</body>
+</html>
