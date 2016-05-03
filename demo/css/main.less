@@ -1,14 +1,50 @@
 @import (css) "../fonts/roboto/Roboto.css";//roboto font
 @import (css) "../fonts/font-awesome/css/font-awesome.min.css";//font-awesome icons
 
+@main-bg: #EEE;
+@border-content: #CCC;
+
 html,
-body {
+body{
 	height: 100%;
 	width: 100%;
 	font-family: 'Roboto';
+	background-color: @main-bg;
 }
 
-#app {
+#app{
 	margin: 0 auto;
 	width: 1024px;
+
+	.demo-tabs{
+		.demo-tab{
+			display: inline-block;
+			width: 10em;
+			text-align: center;
+			padding: 1em 0;
+			cursor: pointer;
+			font-size: 1.1em;
+			font-weight: bold;
+			border-top: 2px solid @border-content;
+			border-right: 2px solid @border-content;
+			&.active{
+				cursor: default;
+				background-color: #fff;
+			}
+			&:first-child{
+				border-left: 2px solid @border-content;
+			}
+		}
+	}
+
+	.demo-content{
+		margin-top: -2px;
+		border: 2px solid @border-content;
+		background-color: #fff;
+		padding: 1em;
+
+		code{
+			display: block;
+		}
+	}
 }

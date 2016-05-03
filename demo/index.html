@@ -16,28 +16,23 @@
 			<div class="panel panel-default">
 				
 			</div>
-			<!-- Demos -->
-			<ul class="nav nav-tabs">
-			  <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
-			  <li><a href="#advance" data-toggle="tab">Advanced</a></li>
-			  <li><a href="#more" data-toggle="tab">More on Flex-box</a></li>
-			</ul>
-			<div class="tab-content">
-				<div class="tab-pane active" id="basic"></div>
-				<div class="tab-pane" id="advance"></div>
-				<div class="tab-pane" id="more"></div>
+			<div class="demo-tabs">
+				<div class="demo-tab demo-basic" data-hash="#basic">Basic</div
+				><div class="demo-tab demo-advance" data-hash="#advance">Advance</div
+				><div class="demo-tab demo-more" data-hash="#more">More on Flexbox</div>
 			</div>
-			<div id="test"></div>
+			<div class="demo-content">
+				The contents of demos go here.
+			</div>
 		</div>
 	
 		<script src="libs/jquery.min.js"></script>
 		<script src="libs/underscore.min.js"></script>
 		<script src="libs/bootstrap.min.js"></script>
 		<script src="libs/backbone.min.js"></script>
+		<script src="libs/loadCSS.js"></script>
 		<!-- flexlayout -->
 		<script src="../flexLayout.js"></script>
-		<!-- main js file for demo -->
-		<script src="js/main.js"></script>
 		<!-- less.js -->
 		<script>
 			window.less = {
@@ -45,5 +40,8 @@
 			};
 		</script>
 		<script src="libs/less.min.js"></script>
+		<!-- main js file for demo -->
+		<script src="js/main.js"></script>
+		<script src="libs/require.js"></script>
 	</body>
 </html>
