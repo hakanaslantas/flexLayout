@@ -2,15 +2,61 @@ $(document).ready(function(){
 
 	var BasicView = Backbone.View.extend({
 		el: '.demo-content',
+		events: {
+
+		},
 		render: function(){
 			var that = this;
 			$.get('templates/basic.html', function(data){
 				that.$el.html('').append(data);
-			});
-			//load prism async to highlight code tags
-			loadCSS('./css/prism.css');
-			require(['./libs/prism.js'], function(prism) {
-			    Prism.highlightAll();
+				//load prism async to highlight code tags
+				loadCSS('./css/prism.css');
+				require(['./libs/prism.js'], function(prism) {
+			    	Prism.highlightAll();
+				});
+			
+				/*var mycm = CodeMirror.fromTextArea(that.$el.find('#mycode')[0], {
+					value: "layout1 = ['1', '3', '5'];",
+					mode: 'javascript',
+					lineWrapping: true,
+					lineNumbers: true
+				});
+
+				mycm.getDoc().setValue("$('#result').flexlayout(['1', '3', '5'])", {
+					height: ' ',
+					width: ' '
+				});*/
+
+				
+//
+				that.$el.find('.code1').flexlayout(['1:#code', '1:#result'], {
+					dir: 'v',
+					height: '300px'
+				});
+
+				that.$el.find('#code').html('<textarea name="mycode" id="mycode" cols="30" rows="5"></textarea>');
+
+				var mycm = CodeMirror.fromTextArea(that.$el.find('#mycode')[0], {
+					value: "layout1 = ['1', '3', '5'];",
+					mode: 'javascript',
+					lineWrapping: true,
+					lineNumbers: true
+				});
+
+				mycm.getDoc().setValue("$('#result').flexlayout(['1', '3', '5'])", {
+					height: ' ',
+					width: ' '
+				});
+
+
+
+				var s = document.createElement('script');
+				s.textContent = mycm.getDoc().getValue();
+				document.body.appendChild(s);
+				
+				
+
+
 			});
 			return this;
 		}
@@ -47,7 +93,7 @@ $(document).ready(function(){
 			this.render();
 		},
 		render: function(){
-			//show basic tab when loaded
+			//show basic tab when loaded--
 			this.$el.find('.demo-basic').click();
 		},
 		contentSwitch: function(e){
