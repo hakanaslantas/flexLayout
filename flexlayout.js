@@ -206,6 +206,18 @@
 			}
 			return _attr;
 		}
+		//region and view
+		else if(!/(=)/.test(attrStr)){
+			//check whether capitalized(View)
+			if(attrStr.charAt(0) === attrStr.charAt(0).toUpperCase)
+				return 'view="' + attrStr + '" ';
+			else if(attrStr.charAt(0) === attrStr.charAt(0).toLowerCase())
+				return 'region="' + attrStr + '"';
+			else{
+				console.warn('please check your region/view name setting.');
+				return '';
+			}
+		}
 		//inline style
 		else{
 			return attrStr;
