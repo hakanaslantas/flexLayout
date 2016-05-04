@@ -6,7 +6,7 @@
     "mr-beaver <beavercoding@gmail.com>"
   ],
   "description": "Easy to use, highly customizable, responsive jQuery split/layout plugin.",
-  "main": "./flexLayout.js",
+  "main": "./flexlayout.js",
   "keywords": [
     "jquery",
     "layout",
