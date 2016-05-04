@@ -1,6 +1,6 @@
 {
   "name": "flexlayout",
-  "version": "0.2.2",
+  "version": "0.2.0",
   "homepage": "TBI",
   "authors": [
     "mr-beaver <beavercoding@gmail.com>"
@@ -25,7 +25,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "tests"
+    "tests",
     "demo"
   ],
   "dependencies": {
