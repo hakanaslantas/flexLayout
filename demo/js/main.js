@@ -29,21 +29,21 @@ $(document).ready(function(){
 
 				
 //
-				that.$el.find('.code1').flexlayout(['1:#code', '1:#result'], {
+				that.$el.find('#code-layoutConfig').flexlayout(['1:#codemirror-layoutConfig', '1:#result-layoutConfig'], {
 					dir: 'v',
 					height: '300px'
 				});
 
-				that.$el.find('#code').html('<textarea name="mycode" id="mycode" cols="30" rows="5"></textarea>');
+				that.$el.find('#codemirror-layoutConfig').html('<textarea id="mycode-layoutConfig" cols="3" rows="1"></textarea>');
 
-				var mycm = CodeMirror.fromTextArea(that.$el.find('#mycode')[0], {
+				var mycm = CodeMirror.fromTextArea(that.$el.find('#mycode-layoutConfig')[0], {
 					value: "layout1 = ['1', '3', '5'];",
 					mode: 'javascript',
 					lineWrapping: true,
-					lineNumbers: true
+					lineNumbers: true,
 				});
 
-				mycm.getDoc().setValue("$('#result').flexlayout(['1', '3', '5'])", {
+				mycm.getDoc().setValue("$('#result-layoutConfig').flexlayout(['1', '3', '5'])", {
 					height: ' ',
 					width: ' '
 				});

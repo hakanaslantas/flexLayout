@@ -16,7 +16,7 @@ $('some-element').flexlayout( layoutConfig, [options] );
 - - - -
 #### **layoutConfig** ####
 
-***- Describle your layout configuration by using an array, in which every element describes a block of the layout.***
+***- Describe your layout configuration by using an array, in which every element describes a block of the layout.***
 
 ```js
 layout1 = ['1', '3', '5'];
@@ -48,7 +48,7 @@ _$some-div-1:_
 _$some-div-2:_
 * It will be divided horizontally into four blocks with height accordingly.
 
-***- Give attributes to the blocks, simply by separate attributes with width/height ':'.***
+***- Give attributes to the blocks, simply by separate attributes and dimension with ':'.***
 
 ```js
 layout1 = ['1:id="left"', '3:class="center" data-XXX="some-prop"', '5'];

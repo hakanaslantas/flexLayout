@@ -1,23 +1,70 @@
-<div class="panel panel-default">
+<div class="text-center">
+	<span class="content-bullet">
+		<strong>usage:</strong> &nbsp;&nbsp;
+	</span>
+	<code class="language-js code-bg-white code-no-radius">
+		$('some-element').flexlayout([layoutConfig], {options});
+	</code>
+</div>
+<div class="panel panel-primary margin-top">
 	<div class="panel-heading">
-		<strong>layout-config</strong>
+		<strong>[layoutConfig]</strong>
 	</div>
 	<div class="panel-body">
-			<code class="language-js">
-				<p>layout1 = ['1', '3', '5'];</p>
-			</code>
-			<br>
-			<code class="language-js">
-				<p>layout2 = ['100px', '1', '5', '10em'];</p>
-			</code>
-			<div class="code1">
+		<div>
+			<i class="fa fa-leaf" aria-hidden="true"></i> 
+			<strong class="content-bullet"> Describe your layout configuration by using an array, in which every element describes the dimension of a block in the layout.</strong>
+		</div>
+		<code class="language-js code-bg">
+			var layoutConfig = ['1, 3, 5'];
+		</code>
+		<div>
+			<i class="fa fa-hand-pointer-o"></i> 
+			<strong> <i>The dimension ratio among three blocks is 1:3:5; i.e. the height/width of blocks has a ratio of 1:3:5.</i></strong>
+		</div>
+		<br>
+
+		<code class="language-js code-bg">
+			var layoutConfig = ['50px', '2', '5', '3em'];
+		</code>
+		<div>
+			<i class="fa fa-hand-pointer-o"></i> 
+			<strong>
+				<i>The first and the last block has a fixed length/width.</i><br>
+				<i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The dimension of the two middle blocks has a ratio of 2:5(after deducting the total length/width with 50px and 3em).</i>
+			</strong>
+		</div>
+		<br>
+
+		<div>
+			<i class="fa fa-leaf" aria-hidden="true"></i> 
+			<strong class="content-bullet">Give attributes to the newly generated blocks, simply by separate attributes and dimension with ":".</strong>
+		</div>
+		<code class="language-js code-bg">
+			var layoutConfig = ['1:#left .left', '4:class="sc" id="sn" data-attr="some"', '5', '3em:.right1 .right2'];
+		</code>
+		<div>
+			<i class="fa fa-hand-pointer-o"></i> 
+			<strong>
+				<i>Either give the attribute with inline style or give it with jQuery selector style.</i>
+			</strong>
+		</div>
+		<br>
+
+		<div>
+			<i class="fa fa-leaf" aria-hidden="true"></i> 
+			<strong class="content-bullet">Try it yourself.</strong>
+			<div class="pull-right">
+				<div class="btn btn-xs btn-success">Apply</div>
+				<div class="btn btn-xs btn-link">Reset</div>
 			</div>
-			
+		</div>
+		<div id="code-layoutConfig"></div>
 	</div>
 </div>
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		<strong>options</strong>
+		<strong>{options}</strong>
 	</div>
 	<div class="panel-body">
 		

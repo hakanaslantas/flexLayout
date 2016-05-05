@@ -1,8 +1,13 @@
 @import (css) "../fonts/roboto/Roboto.css";//roboto font
 @import (css) "../fonts/font-awesome/css/font-awesome.min.css";//font-awesome icons
 
-@main-bg: #EEE;
+@main-bg: rgb(235,231,223);
 @border-content: #CCC;
+@brand-primary: darken(#428bca, 6.5%); // #337ab7
+@brand-success: #5cb85c;
+@brand-info:    #5bc0de;
+@brand-warning: #f0ad4e;
+@brand-danger:  #d9534f;
 
 html,
 body{
@@ -44,7 +49,34 @@ body{
 		padding: 1em;
 
 		code{
-			display: block;
+			display: inline-block;
+			margin: 0.25em 0 !important;
+			&.code-no-radius{
+				border-radius: 0;
+			}
+			&.code-bg-white{
+				background-color: white;
+			}
+			&.code-bg{
+				background-color: #EBE7DF;
+			}
+		}
+
+		.CodeMirror {
+		  //border: 1px solid #eee;
+		  height: auto;
+		}
+		.margin-top{
+			margin-top: 1em;
+		}
+
+		.content-bullet{
+			font-size: 1.1em;
+		}
+
+		#code-layoutConfig{
+			margin-top: 1em;
+			border: 1px solid @brand-primary;
 		}
 	}
 }
