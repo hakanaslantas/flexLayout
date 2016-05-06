@@ -2,7 +2,7 @@
 	<span class="content-bullet">
 		<strong>usage:</strong> &nbsp;&nbsp;
 	</span>
-	<code class="language-js code-bg-white code-no-radius">
+	<code class="language-js code-bg-white code-no-radius" id="usage">
 		$('some-element').flexlayout([layoutConfig], {options});
 	</code>
 </div>
@@ -55,8 +55,13 @@
 			<i class="fa fa-leaf" aria-hidden="true"></i> 
 			<strong class="content-bullet">Try it yourself.</strong>
 			<div class="pull-right">
-				<div class="btn btn-xs btn-success">Apply</div>
-				<div class="btn btn-xs btn-link">Reset</div>
+				<div class="checkbox-inline">
+				    <label>
+				      <input type="checkbox" id="wrap-layout" checked> Word Wrap
+				    </label>
+				</div>
+				<div class="btn btn-xs btn-primary" id="apply-layoutConfig">Apply</div>
+				<div class="btn btn-xs btn-link" id="reset-layoutConfig">Reset</div>
 			</div>
 		</div>
 		<div id="code-layoutConfig"></div>
@@ -67,6 +72,60 @@
 		<strong>{options}</strong>
 	</div>
 	<div class="panel-body">
-		
+		<span class="content-bullet">
+			<i class="fa fa-leaf" aria-hidden="true"></i>
+			<strong>options:</strong>
+		</span>
+		<pre class="pre-bg-white pre-no-border" id="basic-options">
+			<code class="language-js code-bg-white">
+				{
+					/*defines the direction of split(horizontally or vertically); default: 'h'*/
+					dir: 'h' or 'v', 
+					/*defines whether the length/width of the blocks can be adjusted by dragging bars; default: false*/
+					adjust: 'true' or 'false' 
+					/*defines the style of divide bars between created blocks 
+					 *takes a css object, a string represents class name or false(no bars)
+					 *default: {flex: '0 0 2px', 'background-color': '#ddd'}*/
+					bars: {css object}, 'string of class name' or false
+					/*defines the height of the requesting element; default: '100%';*/
+					height: 'string',
+					/*defines the width of the requesting element; default: '100%'*/
+					width: 'string',
+				}
+			</code>
+		</pre>
+		<div>
+			<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+			<strong>Note: </strong>
+			<ul>
+				<li>
+					<strong>
+						When you want to give height/width to the divide bars, give it as flex: '0 0 height/width'.<br>
+						Flexbox does not work well with height and width property. For more check <em style="color:blue;">More on flexbox(TBD)</em>.
+					</strong>
+				</li>
+				<li>
+					<strong>If you give a fixed height/width to a block, that block cannot be adjusted even you have specified adjust is true.</strong>
+				</li>
+			</ul>
+			<div>
+				
+			</div>
+		</div>
+		<br>
+		<div>
+			<i class="fa fa-leaf" aria-hidden="true"></i> 
+			<strong class="content-bullet">Try it yourself.</strong>
+			<div class="pull-right">
+				<div class="checkbox-inline">
+				    <label>
+				      <input type="checkbox" id="wrap-options" checked> Word Wrap
+				    </label>
+				</div>
+				<div class="btn btn-xs btn-primary" id="apply-options">Apply</div>
+				<div class="btn btn-xs btn-link" id="reset-options">Reset</div>
+			</div>
+		</div>
+		<div id="code-options"></div>
 	</div>
 </div>

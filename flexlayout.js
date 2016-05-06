@@ -64,7 +64,7 @@
 			/*defines whether the width/height of created blocks can be adjusted or not, boolean or [boolean, boolean]*/
 			adjust: false,
 			/*defines the style of divide bars between created blocks, {...css object}, '...string of class name...', boolean or [..., ..., ..., ...]*/
-			bars: {flex: '0 0 1px', 'background-color': '#ddd'}
+			bars: {flex: '0 0 2px', 'background-color': '#ddd'}
 		}
 	};
 
