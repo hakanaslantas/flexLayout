@@ -38,7 +38,7 @@ $(document).ready(function(){
 					"$('#result-layoutConfig').flexlayout(layoutConfig);");
 				//execute script inside code mirror
 				var slc = document.createElement('script');
-				slc.textContent = that.cmlc.getDoc().getValue();
+				slc.textContent = '(function(){' + that.cmlc.getDoc().getValue() + '})();';//use closure to protect vars
 				document.body.appendChild(slc);
 
 				//options codemirror and result area
@@ -64,7 +64,7 @@ $(document).ready(function(){
 				"\t});");
 				//execute script inside code mirror
 				var sop = document.createElement('script');
-				sop.textContent = that.cmop.getDoc().getValue();
+				sop.textContent = '(function(){' + that.cmop.getDoc().getValue() + '})();'; //use closure to protect vars
 				document.body.appendChild(sop);
 				//click wrap-options checkbox to disable wrap
 				_.defer(function(){
@@ -76,7 +76,7 @@ $(document).ready(function(){
 		'apply-layoutConfig': function(){
 			this.$el.find('#result-layoutConfig').html('');
 			var s = document.createElement('script');
-			s.textContent = this.cmlc.getDoc().getValue();
+			s.textContent = '(function(){' + this.cmlc.getDoc().getValue() + '})();';//use closure to protect vars
 			document.body.appendChild(s);
 		},
 		'reset-layoutConfig': function(){
@@ -89,7 +89,7 @@ $(document).ready(function(){
 		'apply-options': function(){
 			this.$el.find('#result-options').html('');
 			var sop = document.createElement('script');
-			sop.textContent = this.cmop.getDoc().getValue();
+			sop.textContent = '(function(){' + this.cmop.getDoc().getValue() + '})();';//use closure to protect vars
 			document.body.appendChild(sop);
 		},
 		'reset-options': function(){
