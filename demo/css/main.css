@@ -1,0 +1,147 @@
+@import "../fonts/roboto/Roboto.css";
+@import "../fonts/font-awesome/css/font-awesome.min.css";
+@import "bootstrap.css";
+@import "bootstrap-theme.css";
+@import "codemirror.css";
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Roboto';
+  background-color: #ebe7df;
+}
+* {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+#app {
+  margin: 0 auto;
+  width: 1024px;
+}
+#app #title {
+  margin-top: 2em;
+}
+#app #title #text {
+  text-align: center;
+  color: #fff;
+}
+#app #title #text #name {
+  font-size: 3em;
+}
+#app #title #text #version {
+  font-size: 2em;
+}
+#app #title #text #brief {
+  margin-top: 2em;
+}
+#app #title #text #brief > span {
+  font-size: 1.5em;
+}
+#app #feature {
+  margin: 2em 0;
+}
+#app #feature .panel-heading {
+  font-size: 1.1em;
+}
+#app #feature .panel-body > div {
+  font-size: 1em;
+  margin: 0.25em 0;
+}
+#app .demo-tabs .demo-tab {
+  display: inline-block;
+  width: 10em;
+  text-align: center;
+  padding: 1em 0;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-top: 2px solid #CCC;
+  border-right: 2px solid #CCC;
+}
+#app .demo-tabs .demo-tab.active {
+  cursor: default;
+  background-color: #fff;
+}
+#app .demo-tabs .demo-tab:first-child {
+  border-left: 2px solid #CCC;
+}
+#app .demo-content {
+  margin-top: -2px;
+  border: 2px solid #CCC;
+  background-color: #fff;
+  padding: 1em;
+}
+#app .demo-content pre {
+  margin: 0;
+  padding: 0;
+  -moz-tab-size: 1;
+  -o-tab-sze: 1;
+  -webkit-tab-size: 1;
+  tab-sze: 1;
+}
+#app .demo-content pre.pre-bg-white {
+  background-color: white;
+}
+#app .demo-content pre.pre-no-border {
+  border: none;
+}
+#app .demo-content pre#basic-options {
+  margin-top: -1.15em;
+}
+#app .demo-content pre#basic-options code {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+#app .demo-content code {
+  display: block;
+  margin: 0.25em 0;
+  -moz-tab-size: 1;
+  -o-tab-sze: 1;
+  -webkit-tab-size: 1;
+  tab-sze: 1;
+}
+#app .demo-content code.code-no-radius {
+  border-radius: 0;
+}
+#app .demo-content code.code-bg-white {
+  background-color: white;
+}
+#app .demo-content code.code-bg {
+  background-color: #EBE7DF;
+}
+#app .demo-content code#usage {
+  display: inline-block !important;
+}
+#app .demo-content .CodeMirror {
+  height: auto;
+}
+#app .demo-content .CodeMirror-scroll {
+  width: 478px;
+}
+#app .demo-content .margin-top {
+  margin-top: 1em;
+}
+#app .demo-content .content-bullet {
+  font-size: 1.1em;
+}
+#app .demo-content #code-layoutConfig,
+#app .demo-content #code-options,
+#app .demo-content #code-advance-layout,
+#app .demo-content #code-advance-options {
+  margin-top: 1em;
+  border: 1px solid #CCC;
+}
+#app .demo-content .checkbox-inline > label {
+  margin-bottom: 0;
+  margin-right: 1em;
+}
+#app .demo-content .checkbox-inline > label > input {
+  margin-top: 0.1em;
+}
+#app .demo-content .panel .panel-primary > .panel-heading {
+  border-radius: 0;
+}
+#app .demo-content .panel .panel-primary > .panel-body {
+  border-radius: 0;
+}

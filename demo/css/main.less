@@ -1,5 +1,8 @@
 @import (css) "../fonts/roboto/Roboto.css";//roboto font
 @import (css) "../fonts/font-awesome/css/font-awesome.min.css";//font-awesome icons
+@import (css) "./bootstrap.css";
+@import (css) "./bootstrap-theme.css";
+@import (css) "./codemirror.css";
 
 @main-bg: rgb(235,231,223);
 @border-content: #CCC;
@@ -17,15 +20,44 @@ body{
 	background-color: @main-bg;
 }
 
+* {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+}
+
 #app{
 	margin: 0 auto;
 	width: 1024px;
 
 	#title{
+		margin-top: 2em;
 		#text{
 			text-align: center;
 			color: #fff;
-			font-size: 3em;
+			#name{
+				font-size: 3em;
+			}
+			#version{
+				font-size: 2em;
+			}
+			#brief{
+				margin-top: 2em;
+				>span{
+					font-size: 1.5em;
+				}
+			}
+		}
+	}
+
+	#feature{
+		margin: 2em 0;
+		.panel-heading{
+			font-size: 1.1em;
+		}
+		.panel-body >div{
+			font-size: 1em;
+			margin: 0.25em 0;
 		}
 	}
 
@@ -124,7 +156,7 @@ body{
 		#code-advance-layout,
 		#code-advance-options{
 			margin-top: 1em;
-			border: 1px solid @brand-primary;
+			border: 1px solid #CCC;
 		}
 
 		.checkbox-inline{

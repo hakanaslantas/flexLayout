@@ -1,24 +1,28 @@
 <html>
 	<head>
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<link rel="stylesheet" href="css/bootstrap-theme.css">
-		<!-- code mirror -->
-		<link rel="stylesheet" href="css/codemirror.css">
 		<!-- main less file for demo -->
-		<link rel="stylesheet/less" href="css/main.less">
+		<!-- <link rel="stylesheet/less" href="css/main.less"> -->
+		<link rel="stylesheet/less" href="css/main.css">
 	</head>
 	<body>
 		<div id="app">
 			<div id="title">
 				<div id="text">
-					<span><strong>flexLayout v0.2.1</strong></span>
+					<span id="name"><strong>flexLayout </strong></span>
+					<span id="version"><strong>v0.2.1</strong></span>
+					<div id="brief"><span><strong>A light weight and highly customizable jQuery layout/split plugin.</strong></span></div>
 				</div>
 			</div>
-			<div class="panel panel-default">
-				<strong><i></i></strong>
-			</div>
-			<div class="panel panel-default">
-				<i>Features</i>
+			<div id="feature" class="panel panel-primary">
+				<div class="panel-heading text-center">
+					<strong>Plugin Features</strong>
+				</div>
+				<div class="panel-body">
+					<div><i class="fa fa-check"></i> <strong>Easy to use</strong> -- simple configurations.</div>
+					<div><i class="fa fa-check"></i> <strong>Highly customizable</strong> -- easy configuration for every nested layer and use your own attributes and styles right in the code.</div>
+					<div><i class="fa fa-check"></i> <strong>Resizable</strong> -- individually resizable and whole block resizable.</div>
+					<div><i class="fa fa-check"></i> <strong>Lightweight</strong> -- 1kb when gzipped.</div>
+				</div>
 			</div>
 			<div class="demo-tabs">
 				<div class="demo-tab demo-basic" data-hash="#basic">Basic</div
@@ -31,24 +35,25 @@
 		</div>
 	
 		<!-- jquery -->
-		<script src="./js/libs/jquery.js"></script>
+		<!-- <script src="./js/libs/jquery.js"></script> -->
 		<!-- underscore -->
-		<script src="./js/libs/underscore.js"></script>
+		<!-- <script src="./js/libs/underscore.js"></script> -->
 		<!-- bootstrap -->
-		<script src="./js/libs/bootstrap.js"></script>
+		<!-- <script src="./js/libs/bootstrap.js"></script> -->
 		<!-- backbone -->
-		<script src="./js/libs/backbone.js"></script>
+		<!-- <script src="./js/libs/backbone.js"></script> -->
 		<!-- loadcss -->
-		<script src="./js/libs/loadCSS.js"></script>
-		<!-- less.js -->
-		<script src="./js/libs/less.js"></script>
+		<!-- <script src="./js/libs/loadCSS.js"></script> -->
+		<!-- less -->
+		<!-- <script src="./js/libs/less.js"></script> -->
 		<!-- code mirror -->
-		<script src="./js/libs/codemirror.js"></script>
-		<script src="./js/libs/cm-mode-javascript.js"></script>
+		<!-- <script src="./js/libs/codemirror.js"></script> -->
+		<!-- <script src="./js/libs/cm-mode-javascript.js"></script> -->
 		<!-- flexlayout -->
-		<script src="./js/libs/flexlayout.js"></script>
+		<!-- <script src="./js/libs/flexlayout.js"></script> -->
 		<!-- require js -->
-		<script src="./js/libs/require.js"></script>
+		<!-- <script src="./js/libs/require.js"></script> -->
+		<script src="./js/libs.min.js"></script>
 		<!-- main js file for demo -->
 		<script src="./js/main.js"></script>
 	</body>
