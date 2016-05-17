@@ -12,13 +12,15 @@
 	</div>
 	<div class="panel-body">
 		<div>
-			<i class="fa fa-leaf" aria-hidden="true"></i> 
-			<strong class="content-bullet"> Describe your layout configuration by using an array, in which every element describes the dimension of a block in the layout.</strong>
+			<!-- <i class="fa fa-circle" aria-hidden="true"></i>  -->
+			<li>
+				<strong class="content-bullet"> Describe your layout configuration by using an array, in which every element describes the dimension of a block in the layout.</strong>
+			</li>
 		</div>
 		<code class="language-js code-bg">
 			var layoutConfig = ['1, 3, 5'];
 		</code>
-		<div>
+		<div class="text-muted">
 			<i class="fa fa-hand-pointer-o"></i> 
 			<strong> <i>The dimension ratio among three blocks is 1:3:5; i.e. the height/width of blocks has a ratio of 1:3:5.</i></strong>
 		</div>
@@ -27,7 +29,7 @@
 		<code class="language-js code-bg">
 			var layoutConfig = ['50px', '2', '5', '3em'];
 		</code>
-		<div>
+		<div class="text-muted">
 			<i class="fa fa-hand-pointer-o"></i> 
 			<strong>
 				<i>The first and the last block has a fixed length/width.</i><br>
@@ -37,13 +39,15 @@
 		<br>
 
 		<div>
-			<i class="fa fa-leaf" aria-hidden="true"></i> 
-			<strong class="content-bullet">Give attributes to the newly generated blocks, simply by separate attributes and dimension with ":".</strong>
+			<!-- <i class="fa fa-leaf" aria-hidden="true"></i>  -->
+			<li>
+				<strong class="content-bullet">Give attributes to the newly generated blocks, simply by separate attributes and dimension with ":".</strong>
+			</li>
 		</div>
 		<code class="language-js code-bg">
 			var layoutConfig = ['1:#left .left', '4:class="sc" id="sn" data-attr="some"', '5', '3em:.right1 .right2'];
 		</code>
-		<div>
+		<div class="text-muted">
 			<i class="fa fa-hand-pointer-o"></i> 
 			<strong>
 				<i>Either give the attribute with inline style or give it with jQuery selector style.</i>
@@ -72,10 +76,10 @@
 		<strong>{options}</strong>
 	</div>
 	<div class="panel-body">
-		<span class="content-bullet">
+		<!-- <span class="content-bullet">
 			<i class="fa fa-leaf" aria-hidden="true"></i>
 			<strong>options:</strong>
-		</span>
+		</span> -->
 		<pre class="pre-bg-white pre-no-border" id="basic-options">
 			<code class="language-js code-bg-white">
 				{

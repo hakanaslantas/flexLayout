@@ -21,6 +21,14 @@ body{
 	margin: 0 auto;
 	width: 1024px;
 
+	#title{
+		#text{
+			text-align: center;
+			color: #fff;
+			font-size: 3em;
+		}
+	}
+
 	.demo-tabs{
 		.demo-tab{
 			display: inline-block;
@@ -65,13 +73,17 @@ body{
 			}
 
 			&#basic-options{
-				margin-top: -2.5em;
+				margin-top: -1.15em;
+				code {
+					padding: 0 !important;
+					margin: 0 !important;
+				}
 			}
 		}
 
 		code{
 			display: block;
-			margin: 0.25em 0 !important;
+			margin: 0.25em 0;
 			//tab-size
 			-moz-tab-size: 1;
 			-o-tab-sze: 1;
@@ -108,7 +120,9 @@ body{
 		}
 
 		#code-layoutConfig,
-		#code-options{
+		#code-options,
+		#code-advance-layout,
+		#code-advance-options{
 			margin-top: 1em;
 			border: 1px solid @brand-primary;
 		}
@@ -120,6 +134,15 @@ body{
 				>input {
 					margin-top: 0.1em;
 				}
+			}
+		}
+
+		.panel .panel-primary{
+			> .panel-heading{
+				border-radius: 0;
+			}
+			> .panel-body{
+				border-radius: 0;
 			}
 		}
 	}

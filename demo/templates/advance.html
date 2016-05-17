@@ -1,1 +1,119 @@
-advance template
+<div class="text-center">
+	<span class="content-bullet">
+		<strong>usage:</strong> &nbsp;&nbsp;
+	</span>
+	<code class="language-js code-bg-white code-no-radius" id="usage">
+		$('some-element').flexlayout([layoutConfig], {options});
+	</code>
+</div>
+<div class="panel panel-primary margin-top">
+	<div class="panel-heading">
+		<strong>Nested [layoutConfig]</strong>
+	</div>
+	<div class="panel-body">
+		<div>
+			<li>
+				<strong class="content-bullet"> For nested layout you could describe your layout using a two-dimension array.</strong>
+			</li>
+		</div>
+		<pre class="pre-no-border pre-bg-white">
+			<code class="language-js code-bg">
+				var layoutConfig = [
+					'100px:.header', 
+					['1:.content', ['1:.content-left', '5:.content-right']], //nested content layout
+					'50px:.footer'];
+			</code>
+		</pre>
+		<div class="text-muted">
+			<i class="fa fa-hand-pointer-o"></i> 
+			<strong> <i>The preceding layout has head, content and footer with height ratio of 100px:1:50px. Also the content has been divided into two parts with width ratio of 1:5.</i></strong>
+		</div>
+		<br>
+		<div>
+			<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+			<strong>Note: </strong>
+			<ul>
+				<li>
+					<strong>
+						For changing direction of nested layout, please check advence {options}.
+					</strong>
+				</li>
+			</ul>
+		</div>
+		<br>
+		<div>
+			<i class="fa fa-leaf" aria-hidden="true"></i> 
+			<strong class="content-bullet">Try it yourself.</strong>
+			<div class="pull-right">
+				<div class="checkbox-inline">
+				    <label>
+				      <input type="checkbox" id="wrap-advance-layout"> Word Wrap
+				    </label>
+				</div>
+				<div class="btn btn-xs btn-primary" id="apply-advance-layout">Apply</div>
+				<div class="btn btn-xs btn-link" id="reset-advance-layout">Reset</div>
+			</div>
+		</div>
+		<div id="code-advance-layout"></div>
+	</div>
+</div>
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<strong>{options}</strong>
+	</div>
+	<div class="panel-body">
+		<pre class="pre-bg-white pre-no-border" id="basic-options">
+			<code class="language-js code-bg-white">
+				{
+					/*defines the direction of split(horizontally or vertically); default: 'h'*/
+					dir: 'h' or 'v' or '['h', 'v', 'v', ...]' 
+					/*defines whether the length/width of the blocks can be adjusted by dragging bars; default: false*/
+					adjust: 'true' or 'false' or ['true', 'false', ...]
+					/*defines the style of divide bars between created blocks 
+					 *takes a css object, a string represents class name or false(no bars)
+					 *default: {flex: '0 0 2px', 'background-color': '#ddd'}*/
+					bars: {css object} or 'string of class name' or false or [false, {css}, '.class-name', false, ...]
+					/*defines the height of the requesting element; default: '100%';*/
+					height: 'string',
+					/*defines the width of the requesting element; default: '100%'*/
+					width: 'string',
+				}
+			</code>
+		</pre>
+		<div class="text-muted">
+			<i class="fa fa-hand-pointer-o"></i> 
+			<strong> <i>For nested layouts, the options could either be a single global configuration or using an array to specify every layer's own options.</i></strong>
+		</div>
+		<br>
+		<div>
+			<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+			<strong>Note: </strong>
+			<ul>
+				<li>
+					<strong>
+						When you want to give height/width to the divide bars, give it as flex: '0 0 height/width'.<br>
+						Flexbox does not work well with height and width property. For more check <em style="color:blue;">More on flexbox(TBD)</em>.
+					</strong>
+				</li>
+				<li>
+					<strong>If you give a fixed height/width to a block, that block cannot be adjusted even you have specified adjust is true.</strong>
+				</li>
+			</ul>
+		</div>
+		<br>
+		<div>
+			<i class="fa fa-leaf" aria-hidden="true"></i> 
+			<strong class="content-bullet">Try it yourself.</strong>
+			<div class="pull-right">
+				<div class="checkbox-inline">
+				    <label>
+				      <input type="checkbox" id="wrap-advance-options"> Word Wrap
+				    </label>
+				</div>
+				<div class="btn btn-xs btn-primary" id="apply-advance-options">Apply</div>
+				<div class="btn btn-xs btn-link" id="reset-advance-options">Reset</div>
+			</div>
+		</div>
+		<div id="code-advance-options"></div>
+	</div>
+</div>
