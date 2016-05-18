@@ -5,11 +5,18 @@ Refer to the [flexLayout website](http://mr-beaver.github.io/flexLayout/) for ex
 
 ## Features ##
 
-...
+* **Easy to use** -- simple configurations.  
+* **Highly customizable** -- easy configuration for every nested layer and use your own attributes and styles.  
+* **Resizable** -- individually resizable and whole block resizable.  
+* **Easy to use with Backbone** -- just assign el with generated layouts.  
+* **Work on all major browsers** -- implemented with flexboxes.
+* **Lightweight** -- about 1kb when gzipped.  
 
 ## How it works ##
 
-$('some-element').flexlayout( layoutConfig, [options] );
+```js
+    $('some-element').flexlayout([layoutConfig], {options} );
+```
 
 *Note: 'some-element's parent **must** have height and width(i.e. height and width cannot be 0). Or you need to specify height and width for 'some-element' in the [options].*
 
