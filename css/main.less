@@ -97,14 +97,22 @@ body{
 		background-color: #fff;
 		padding: 1em;
 
+		code[class*="language-"],
+		pre[class*="language-"]{
+			-moz-tab-size: 1 !important;
+			-o-tab-size: 1 !important;
+			tab-size: 1 !important;
+		}
+
 		pre{
 			margin: 0;
 			padding: 0;
 			//tab-size
-			-moz-tab-size: 1;
+			/* -moz-tab-size: 1;
 			-o-tab-sze: 1;
 			-webkit-tab-size: 1;
-			tab-sze: 1;
+			-ms-tab-size: 1;
+			tab-sze: 1; */
 			//
 			&.pre-bg-white{
 				background-color: white;
@@ -126,10 +134,11 @@ body{
 			display: block;
 			margin: 0.25em 0;
 			//tab-size
-			-moz-tab-size: 1;
+			/* -moz-tab-size: 1;
 			-o-tab-sze: 1;
 			-webkit-tab-size: 1;
 			tab-sze: 1;
+			-ms-tab-size: 1; */
 			//
 			&.code-no-radius{
 				border-radius: 0;
