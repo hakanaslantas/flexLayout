@@ -22,5 +22,10 @@ minify --output ./demo/js/libs.min.js ./demo/js/libs/jquery.js ./demo/js/libs/un
 
 lessc ./demo/css/main.less ./demo/css/main.css
 echo 'less complied.'
+
+#copy to site brach
+yes | cp -a ./demo/. ../flexLayout-site/
+echo 'site generated'
+
 #gzip min
 #gzip -9 -c flexlayout.min.js > flexLayout.min.js.gz

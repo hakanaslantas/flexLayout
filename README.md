@@ -1,7 +1,7 @@
 # flexLayout #
 #### Easy to use, highly customizable, light weight, jQuery split/layout plugin. ####
 
-Refer to the [flexLayout website]()(TBD) for examples.
+Refer to the [flexLayout website](http://mr-beaver.github.io/flexLayout/) for examples.
 
 ## Features ##
 
