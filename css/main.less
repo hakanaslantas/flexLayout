@@ -1,0 +1,181 @@
+@import (css) "../fonts/roboto/Roboto.css";//roboto font
+@import (css) "../fonts/font-awesome/css/font-awesome.min.css";//font-awesome icons
+@import (css) "./bootstrap.css";
+@import (css) "./bootstrap-theme.css";
+@import (css) "./codemirror.css";
+
+@main-bg: rgb(235,231,223);
+@border-content: #CCC;
+@brand-primary: darken(#428bca, 6.5%); // #337ab7
+@brand-success: #5cb85c;
+@brand-info:    #5bc0de;
+@brand-warning: #f0ad4e;
+@brand-danger:  #d9534f;
+
+html,
+body{
+	height: 100%;
+	width: 100%;
+	font-family: 'Roboto';
+	background-color: @main-bg;
+}
+
+* {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+}
+
+#app{
+	margin: 0 auto;
+	width: 1024px;
+
+	#title{
+		margin-top: 2em;
+		#text{
+			text-align: center;
+			color: #fff;
+			#name{
+				font-size: 3em;
+			}
+			#version{
+				font-size: 2em;
+			}
+			#brief{
+				margin-top: 2em;
+				>span{
+					font-size: 1.5em;
+				}
+			}
+		}
+	}
+
+	#feature{
+		margin: 2em 0;
+		.panel-heading{
+			font-size: 1.1em;
+		}
+		.panel-body >div{
+			font-size: 1em;
+			margin: 0.25em 0;
+		}
+	}
+
+	.demo-tabs{
+		.demo-tab{
+			display: inline-block;
+			width: 10em;
+			text-align: center;
+			padding: 1em 0;
+			cursor: pointer;
+			font-size: 1.1em;
+			font-weight: bold;
+			border-top: 2px solid @border-content;
+			border-right: 2px solid @border-content;
+			&.active{
+				cursor: default;
+				background-color: #fff;
+			}
+			&:first-child{
+				border-left: 2px solid @border-content;
+			}
+		}
+	}
+
+	.demo-content{
+		margin-top: -2px;
+		border: 2px solid @border-content;
+		background-color: #fff;
+		padding: 1em;
+
+		pre{
+			margin: 0;
+			padding: 0;
+			//tab-size
+			-moz-tab-size: 1;
+			-o-tab-sze: 1;
+			-webkit-tab-size: 1;
+			tab-sze: 1;
+			//
+			&.pre-bg-white{
+				background-color: white;
+			}
+			&.pre-no-border{
+				border: none;
+			}
+
+			&#basic-options{
+				margin-top: -1.15em;
+				code {
+					padding: 0 !important;
+					margin: 0 !important;
+				}
+			}
+		}
+
+		code{
+			display: block;
+			margin: 0.25em 0;
+			//tab-size
+			-moz-tab-size: 1;
+			-o-tab-sze: 1;
+			-webkit-tab-size: 1;
+			tab-sze: 1;
+			//
+			&.code-no-radius{
+				border-radius: 0;
+			}
+			&.code-bg-white{
+				background-color: white;
+			}
+			&.code-bg{
+				background-color: #EBE7DF;
+			}
+			&#usage{
+				display: inline-block !important;
+			}
+		}
+
+		.CodeMirror{
+		  //border: 1px solid #eee;
+		  height: auto;
+		}
+		.CodeMirror-scroll{ 
+			width: 478px; 
+		}
+		.margin-top{
+			margin-top: 1em;
+		}
+
+		.content-bullet{
+			font-size: 1.1em;
+		}
+
+		#code-layoutConfig,
+		#code-options,
+		#code-advance-layout,
+		#code-advance-options{
+			margin-top: 1em;
+			border: 1px solid #CCC;
+		}
+
+		.checkbox-inline{
+			> label{
+				margin-bottom: 0;
+				margin-right: 1em;
+				>input {
+					margin-top: 0.1em;
+				}
+			}
+		}
+
+		.panel .panel-primary{
+			> .panel-heading{
+				border-radius: 0;
+			}
+			> .panel-body{
+				border-radius: 0;
+			}
+		}
+	}
+}
