@@ -5,11 +5,11 @@
 //     For all details and documentation:
 //     http://backbonejs.org
 
-(function(factory) {
+(function(factory/*!!factory is the function object defined below*/) {
 
   // Establish the root object, `window` (`self`) in the browser, or `global` on the server.
   // We use `self` instead of `window` for `WebWorker` support.
-  var root = (typeof self == 'object' && self.self === self && self) ||
+  var root = (typeof self == 'object' && self.self === self && self) || /*!!self is alias of window, also is self.self*/
             (typeof global == 'object' && global.global === global && global);
 
   // Set up Backbone appropriately for the environment. Start with AMD.
@@ -27,7 +27,8 @@
     factory(root, exports, _, $);
 
   // Finally, as a browser global.
-  } else {
+  } else {/*!!This is usual way to kickstart backbone*/
+    /*!!pass in backbone as an empty object, underscore, and a DOM selecting library.*/
     root.Backbone = factory(root, {}, root._, (root.jQuery || root.Zepto || root.ender || root.$));
   }
 
@@ -102,7 +103,7 @@
     });
   };
 
-  // Support `collection.sortBy('attr')` and `collection.findWhere({id: 1})`.
+  // Support `collection.sortBy('attr')` and `collection.findWhere({id: 1})`. /*??May be come back after reading model*/
   var cb = function(iteratee, instance) {
     if (_.isFunction(iteratee)) return iteratee;
     if (_.isObject(iteratee) && !instance._isModel(iteratee)) return modelMatcher(iteratee);
@@ -139,11 +140,11 @@
   // maps `{event: callback}`).
   var eventsApi = function(iteratee, events, name, callback, opts) {
     var i = 0, names;
-    if (name && typeof name === 'object') {
+    if (name && typeof name === 'object') {/*!!for jquery style event; void 0 is just undefined*/
       // Handle event maps.
       if (callback !== void 0 && 'context' in opts && opts.context === void 0) opts.context = callback;
       for (names = _.keys(name); i < names.length ; i++) {
-        events = eventsApi(iteratee, events, names[i], name[names[i]], opts);
+        events = eventsApi(iteratee, events, names[i], name[names[i]]/*!!gets callback*/, opts);
       }
     } else if (name && eventSplitter.test(name)) {
       // Handle space-separated event names by delegating them individually.
@@ -163,7 +164,7 @@
     return internalOn(this, name, callback, context);
   };
 
-  // Guard the `listening` argument from the public API.
+  // Guard the `listening` argument from the public API. /*!!05192016*/
   var internalOn = function(obj, name, callback, context, listening) {
     obj._events = eventsApi(onApi, obj._events || {}, name, callback, {
       context: context,
