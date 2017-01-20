@@ -1,5 +1,5 @@
 /**
- * flexLayout v0.2.2, http://TBD
+ * flexLayout v0.2.4, http://TBD
  * ===================================
  * Highly customizable easy to use, light weight, layout/split jQuery plugin
  * 
