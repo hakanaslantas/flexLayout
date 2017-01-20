@@ -1,20 +1,20 @@
-#!/bin/bash
+# #!/bin/bash
 
-#copy flexlayout.js to the demo/js/libs folder
-cp -f ./flexlayout.js ./demo/js/libs/flexlayout.js
-echo 'flexlayout.js copied to demo/js/libs.'
+# #copy flexlayout.js to the demo/js/libs folder
+# cp -f ./flexlayout.js ./demo/js/libs/flexlayout.js
+# echo 'flexlayout.js copied to demo/js/libs.'
 
 
-#remove old files
-rm flexlayout.min.js #flexlayout.min.js.gz
+# #remove old files
+# rm flexlayout.min.js #flexlayout.min.js.gz
 
-#uglify
-uglifyjs flexlayout.js --compress --mangle --mangle-props --screw-ie8 --output flexlayout.u.js
+# #uglify
+# uglifyjs flexlayout.js --compress --mangle --mangle-props --screw-ie8 --output flexlayout.u.js
 
-#minify
-minify --output flexlayout.min.js  flexlayout.u.js
+# #minify
+# minify --output flexlayout.min.js  flexlayout.u.js
 
-rm flexlayout.u.js
+# rm flexlayout.u.js
 
 #################################################################################################
 #Minify all libs
@@ -26,6 +26,12 @@ echo 'less complied.'
 #copy to site brach
 yes | cp -a ./demo/. ../flexLayout-site/
 echo 'site generated'
+
+#push site
+cd ../flexLayout-site
+git add --all
+git commit -m "sync site to $1"
+git push origin gh-pages
 
 #gzip min
 #gzip -9 -c flexlayout.min.js > flexLayout.min.js.gz
