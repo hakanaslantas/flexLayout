@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			html,
+			body {
+				height: 100%;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="test"></div>
+		
+		<script src="jquery.js"></script>
+		<script src="../flexlayout.js"></script>
+		<script>
+			$('.test').flexlayout(/*[
+					'80px:class="top banner":"<div>This is top banner.</div>"',
+					['1:id="content"', ['1:.content-left:"This is left content."','2:.content-right:"123"']],
+					'50px:.footer:"<span>This is footer</span>"'
+				]*/);
+		</script>
+	</body>
+</html>
