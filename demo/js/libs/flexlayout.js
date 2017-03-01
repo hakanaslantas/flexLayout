@@ -9,8 +9,8 @@
 
 ;(function($){
 
-	$.fn.flexLayout = function(layout, opts, _cb/*TBI*/){
-    
+	$.fn.flexLayout = function(layout, opts/*,_cb TBI*/){
+
 		var _options = {}, /*store options*/
 			_layoutArr = []; /*store array*/
 
@@ -67,7 +67,7 @@
 			/*defines whether the width/height of created blocks can be adjusted or not, boolean or [boolean, boolean]*/
 			adjust: false,
 			/*defines the style of divide bars between created blocks, {...css object}, '...string of class name...', boolean or [..., ..., ..., ...]*/
-			bars: {flex: '0 0 2px', 'background-color': '#ddd'}
+			bars: {flex: '0 0 1px', 'background-color': '#DEDEDE'}
 		}
 	};
 
@@ -182,7 +182,9 @@
 	}
 
 	/**
-	 * Trim attributes given by user, if user uses selectors style(e.g. #, .)
+	 * Trim attributes given by user. 
+	 * If user uses selectors style(e.g. #, .), it can only appears at the beginning of the string. Otherwise it will be ignored.
+	 * 
 	 *
 	 * Note: if using selector style, the function performs under the assumption that only one 'id' exits.
 	 * 		 That is, there is only one '#' in the selector style string.
@@ -194,7 +196,7 @@
 		if(!attrStr)
 			return '';
 		//selector style
-		if(/(#|\.)/.test(attrStr) && !/(href)/.test(attrStr)){
+		if(/(#|\.)/.test(attrStr.charAt(0))){
 			//remove spaces
 			attrStr = attrStr.replace(/\s/g, '');
 			//id exists
