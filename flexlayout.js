@@ -50,18 +50,16 @@
 			if(Object.keys(_barList).length){
 
 				//register mouse movedown event on $el
-				$el.on('mousedown', function(e){
-					var $target = $(e.target);
-
-					//check whether mousedown on the bar elements
-					if(!$target.hasClass('flexlayout-bar'))
-						return;
+				$el.on('mousedown', '.flexlayout-bar', function(e){
+					//caveat: do not use cached bar objects for better compatibility.
+					//get bar object
+					var $target = $(this);
 
 					//get bar-id
 					var barid = $target.attr('bar-id');
 
 					//setup variables
-					var $this = _barList[barid].$bar,
+					var $this = $target,
 						dir = _barList[barid].dir,
 						$prev = $this.prev(),
 						$next = $this.next(),
@@ -327,12 +325,9 @@
 		//add uid attr for easier query
 		$bar.attr('bar-id', uid);
 
-		//store bars for later configuration
+		//store bar meta data for registering drag listener configuration
 		_bl[uid] = {
-			$bar: $bar,
 			dir: dir,
-			nextConfig: nextConfig,
-			$parent: $bar.parent(),
 		};
 	}
 
