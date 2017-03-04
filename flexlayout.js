@@ -1,9 +1,9 @@
 /**
- * flexLayout v0.3.0, http://TBD
+ * flexLayout v0.3.2, http://mr-beaver.github.io/flexLayout/
  * ===================================
  * Highly customizable easy to use, light weight, layout/split jQuery plugin
  * 
- * (c) 2016 mr-beaver, http://TBD
+ * @2017 mr-beaver, http://mr-beaver.github.io/
  * MIT Licensed
  */
 
@@ -25,6 +25,7 @@
 		//setup layout
 		return this.each(function(index, el){
 			var _taskQue = [],  //task queue, setup layout iteratively
+				_barList = {}, //store $bars for batch configuration resize event
 				$el = $(el);
 			/**
 			 * Only setup height/width for the first level, since the following levels will self-expand with style flex.
@@ -42,8 +43,62 @@
 			});
 			//traverse task queue
 			while(_taskQue.length){
-				setLayout(_taskQue[0].$element, _taskQue[0].layout, _taskQue[0].options, _taskQue);
+				setLayout(_taskQue[0].$element, _taskQue[0].layout, _taskQue[0].options, _taskQue, _barList, $el);
 			}
+
+			//check whether there is elements in _barList, if yes, register events for those bars
+			if(Object.keys(_barList).length){
+
+				//register mouse movedown event on $el
+				$el.on('mousedown', function(e){
+					var $target = $(e.target);
+
+					//check whether mousedown on the bar elements
+					if(!$target.hasClass('flexlayout-bar'))
+						return;
+
+					//get bar-id
+					var barid = $target.attr('bar-id');
+
+					//setup variables
+					var $this = _barList[barid].$bar,
+						dir = _barList[barid].dir,
+						$prev = $this.prev(),
+						$next = $this.next(),
+						$parent = $this.parent(),
+						prevStart = (dir === 'v') ? $prev.offset().left - $parent.offset().left : $prev.offset().top - $parent.offset().top,
+						nextEnd = (dir === 'v') ? ($next.offset().left + $next.width()) - $parent.offset().left : ($next.offset().top + $next.height()) - $parent.offset().top,
+						total = nextEnd - prevStart,//total height/width of two blocks
+						totalFlexGrow = Number.parseFloat($prev.css('flex-grow')) + Number.parseFloat($next.css('flex-grow'));
+					//register resize event
+					$el.on('mousemove', function(e){
+						e.preventDefault();
+
+						//get current position
+						var relX = e.pageX - $parent.offset().left,
+							relY = e.pageY - $parent.offset().top,
+							prevPercent = (dir === 'v') ? (relX - prevStart) / total : (relY - prevStart) / total,
+							nextPercent = 1 - prevPercent,
+							min = 10;//minimum percentage of a block
+						if(prevPercent * 100 < min || nextPercent * 100 < min){
+							$parent.unbind('mousemove');//unbind mousemove if one block is less than minimum percentage
+							return;
+						}
+							
+						$prev.css({'flex-grow': prevPercent * totalFlexGrow});
+						$next.css({'flex-grow': nextPercent * totalFlexGrow});
+						//unbind mousemove if mouseup
+						$(window).on('mouseup', function(){
+							$el.unbind('mousemove');
+						});
+						
+					});
+					
+				});
+
+				
+			}
+
 		});
 	};
 
@@ -67,7 +122,7 @@
 			/*defines whether the width/height of created blocks can be adjusted or not, boolean or [boolean, boolean]*/
 			adjust: false,
 			/*defines the style of divide bars between created blocks, {...css object}, '...string of class name...', boolean or [..., ..., ..., ...]*/
-			bars: {flex: '0 0 2px', 'background-color': '#ddd'},
+			bars: {flex: '0 0 3px', 'background-color': '#ddd'},
 			/*append or rewrite selected div*/
 			append: false
 		}
@@ -90,7 +145,7 @@
 	/**
 	 * main layout setup function
 	 */
-	function setLayout($el, layout, opts, _tq){
+	function setLayout($el, layout, opts, _tq, _bl, $ancestor){
 		//check whether append, if not. empty first
 		if(!opts.append) $el.empty();
 		//check direction configure to setup flex-flow
@@ -130,7 +185,7 @@
 				//check whether adjustable is true or not
 				if($.isArray(_adjust) ? _adjust[0] : _adjust && !/(px|em|%)/.test(_dimension)){//adjust is true and not fixed height/width
 					//register events on bars
-					registerResize(_$bar, $.isArray(_dir) ? _dir[0] : _dir, layout[index + 1]);
+					registerResize(_$bar, $.isArray(_dir) ? _dir[0] : _dir, layout[index + 1], _bl, $ancestor);
 				}
 			}
 			//multi-layer layout, push next layer into task que
@@ -256,54 +311,38 @@
 		return resultStr;
 	}
 
-	/**
-	 * register resize event on bars, if necessary
-	 */
-	function registerResize($bar, dir, nextConfig){
+	function registerResize($bar, dir, nextConfig, _bl, $ancestor){
 		//cehck whether the next block has fixed height/width, if yes return
 		if(/(px|em)/.test($.isArray(nextConfig) ? nextConfig[0].split(':')[0] : nextConfig.split(':')[0]))
 			return;
 		//add cursor style according to dir
 		$bar.css({cursor: (function(){return (dir === 'v') ? 'ew-resize' : 'ns-resize';})()});
-		//register mousedown event on bars
-		$bar.on('mousedown', function(e){
-			/**
-			 * Note: browsers register all the listening event at the second phase of JS loading.
-			 * 		 That is, after all the DOM elements are inserted even those ones inserted by the JS.
-			 * 		 Therefore one might think the next block 'has not been inserted' through the code;
-			 * 		 however by the time browsers register this event the next block is already there.
-			 */
-			e.preventDefault();//pervent default
-			var $this = $(this),
-				$prev = $this.prev(),
-				$next = $this.next(),
-				$parent = $this.parent(),
-				prevStart = (dir === 'v') ? $prev.offset().left - $parent.offset().left : $prev.offset().top - $parent.offset().top,
-				nextEnd = (dir === 'v') ? ($next.offset().left + $next.width()) - $parent.offset().left : ($next.offset().top + $next.height()) - $parent.offset().top,
-				total = nextEnd - prevStart,//total height/width of two blocks
-				totalFlexGrow = Number.parseFloat($prev.css('flex-grow')) + Number.parseFloat($next.css('flex-grow'));
-				//mousemove event registered on $this.parent()
-				$parent.on('mousemove', function(e){
-					e.preventDefault();//pervent default
-					//get current position
-					var relX = e.pageX - $parent.offset().left,
-						relY = e.pageY - $parent.offset().top,
-						prevPercent = (dir === 'v') ? (relX - prevStart) / total : (relY - prevStart) / total,
-						nextPercent = 1 - prevPercent,
-						min = 10;//minimum percentage of a block
-					if(prevPercent * 100 < min || nextPercent * 100 < min){
-						$parent.unbind('mousemove');//unbind mousemove if one block is less than minimum percentage
-						return;
-					}
-						
-					$prev.css({'flex-grow': prevPercent * totalFlexGrow});
-					$next.css({'flex-grow': nextPercent * totalFlexGrow});
-					//unbind mousemove if mouseup
-					$(window).on('mouseup', function(){
-						$parent.unbind('mousemove');
-					});
-				});
-		});
+
+		//add a unique id to bars
+		var uid = uniqueId('flexlayout-bar-');
+
+		//add a default class to bar, for future reference
+		$bar.addClass('flexlayout-bar');
+
+		//add uid attr for easier query
+		$bar.attr('bar-id', uid);
+
+		//store bars for later configuration
+		_bl[uid] = {
+			$bar: $bar,
+			dir: dir,
+			nextConfig: nextConfig,
+			$parent: $bar.parent(),
+		};
 	}
+
+	//function generate unique id for bars, referenced from underscore.js
+	//https://github.com/jashkenas/underscore
+	var idCounter = 0;
+	uniqueId = function(prefix) {
+	    var id = ++idCounter + '';
+	    return prefix ? prefix + id : id;
+	};
+
 
 }(window.jQuery));
